@@ -1,5 +1,28 @@
-# Object file
-*.o
+# IDE ignore
+.idea/
+*.ipr
+*.iml
+*.iws
+.vscode/
 
-# Ada Library Information
-*.ali
+# temp ignore
+*.log
+*.cache
+*.diff
+*.exe
+*.exe~
+*.patch
+*.tmp
+*.swp
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# build
+/cmd/comet/comet
+/cmd/logic/logic
+/cmd/job/job
+/target
+/configs
+/dist

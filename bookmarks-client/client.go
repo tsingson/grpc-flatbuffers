@@ -7,7 +7,7 @@ import (
 
 	flatbuffers "github.com/google/flatbuffers/go"
 
-	"github.com/tsingson/grpc-flatbuffers-example/bookmarks"
+	"github.com/tsingson/grpc-flatbuffers/bookmarks"
 
 	"google.golang.org/grpc"
 )

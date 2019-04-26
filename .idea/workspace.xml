@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="674138f2-6b62-4499-b36a-1a27a70b22d9" name="Default Changelist" comment="" />
+    <list default="true" id="674138f2-6b62-4499-b36a-1a27a70b22d9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/grpc-flatbuffers-example.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmarks-client/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/bookmarks-client/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmarks-server/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/bookmarks-server/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -9,18 +18,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bookmarks-client/client.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
-              <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
-              <folding>
-                <element signature="e#14#183#0" expanded="true" />
-                <element signature="e#982#1017#0" expanded="true" />
-                <element signature="e#1576#1611#0" expanded="true" />
-                <element signature="e#2486#2521#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="150">
+              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bookmarks-server/server.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -28,16 +40,19 @@
     </leaf>
   </component>
   <component name="GOROOT" path="/usr/local/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/bookmarks.fbs" />
-        <option value="$PROJECT_DIR$/bookmarks-server/server.go" />
         <option value="$PROJECT_DIR$/bookmarks-client/client.go" />
+        <option value="$PROJECT_DIR$/bookmarks-server/server.go" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
     <option name="width" value="1920" />
     <option name="height" value="1200" />
   </component>
@@ -46,41 +61,37 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="grpc-flatbuffers-example" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc-flatbuffers-example" type="462c0819:PsiDirectoryNode" />
+              <item name="grpc-flatbuffers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="grpc-flatbuffers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="grpc-flatbuffers-example" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc-flatbuffers-example" type="462c0819:PsiDirectoryNode" />
+              <item name="grpc-flatbuffers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="grpc-flatbuffers" type="462c0819:PsiDirectoryNode" />
               <item name="bookmarks" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="grpc-flatbuffers-example" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc-flatbuffers-example" type="462c0819:PsiDirectoryNode" />
+              <item name="grpc-flatbuffers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="grpc-flatbuffers" type="462c0819:PsiDirectoryNode" />
               <item name="bookmarks-client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="grpc-flatbuffers-example" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc-flatbuffers-example" type="462c0819:PsiDirectoryNode" />
+              <item name="grpc-flatbuffers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="grpc-flatbuffers" type="462c0819:PsiDirectoryNode" />
               <item name="bookmarks-server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="grpc-flatbuffers-example" type="b2602c69:ProjectViewProjectNode" />
-              <item name="grpc-flatbuffers-example" type="462c0819:PsiDirectoryNode" />
-              <item name="bookmarkspb" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
@@ -120,13 +131,13 @@
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
       <window_info anchor="bottom" auto_hide="true" x="840" y="164" width="396" height="1151" id="Run" order="11" sideWeight="0.4995656" side_tool="true" weight="0.20528634" />
-      <window_info anchor="right" id="make" />
       <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.3297619" />
       <window_info anchor="right" id="Structure" order="1" sideWeight="0.5004344" side_tool="true" visible="true" weight="0.20625" />
       <window_info anchor="right" id="Database" order="2" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
+      <window_info anchor="right" id="make" order="6" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -264,16 +275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bookmarks-server/server.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="32" column="93" selection-start-line="32" selection-start-column="86" selection-end-line="32" selection-end-column="93" />
-          <folding>
-            <element signature="e#14#261#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../pkg/mod/github.com/google/flatbuffers@v1.11.0/go/builder.go">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -283,14 +284,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bookmarks-client/client.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="72" column="11" selection-start-line="72" selection-start-column="11" selection-end-line="72" selection-end-column="11" />
-          <folding>
-            <element signature="e#14#183#0" expanded="true" />
-            <element signature="e#982#1017#0" expanded="true" />
-            <element signature="e#1576#1611#0" expanded="true" />
-            <element signature="e#2486#2521#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bookmarks-server/server.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
         </state>
       </provider>
     </entry>
