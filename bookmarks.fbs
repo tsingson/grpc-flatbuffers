@@ -1,0 +1,27 @@
+namespace bookmarks;
+
+rpc_service BookmarksService {
+  Add(AddRequest):AddResponse(streaming: "none");
+  LastAdded(LastAddedRequest):LastAddedResponse (streaming: "none");
+  All(LastAddedRequest):LastAddedResponse (streaming: "server");
+}
+
+enum Status:byte  (bit_flags) { Online, Offline, UnAccessAble  }
+
+
+table AddRequest {
+  URL:string;
+  title:string;
+   status:Status;
+}
+
+table AddResponse {}
+
+table LastAddedRequest {}
+
+table LastAddedResponse {
+  ID:string;
+  URL:string;
+  title:string;
+  status:Status;
+}
