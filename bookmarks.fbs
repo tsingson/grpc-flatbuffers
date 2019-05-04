@@ -6,13 +6,18 @@ rpc_service BookmarksService {
   All(LastAddedRequest):LastAddedResponse (streaming: "server");
 }
 
-enum Status:byte  (bit_flags) { Online, Offline, UnAccessAble  }
+enum Status:byte  (bit_flags) {
+Online,
+Offline,
+UnAccessAble
+  }
 
 
 table AddRequest {
-  URL:string;
-  title:string;
-   status:Status;
+  URL:string (id:0);
+  title:string (id:1);
+
+   status:Status (id:2);
 }
 
 table AddResponse {}
@@ -20,8 +25,9 @@ table AddResponse {}
 table LastAddedRequest {}
 
 table LastAddedResponse {
-  ID:string;
-  URL:string;
-  title:string;
-  status:Status;
+  ID:string (id:0);
+  URL:string (id:1);
+  title:string (id:2);
+  status:Status ( id:3);
+  lastTimes:long (id:4);
 }

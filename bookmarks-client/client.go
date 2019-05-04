@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"time"
 
 	flatbuffers "github.com/google/flatbuffers/go"
 
@@ -62,6 +63,7 @@ func clientAll(client bookmarks.BookmarksServiceClient) (err error) {
 			log.Println("URL: ", string(out.URL()))
 			log.Println("Title: ", string(out.Title()))
 			log.Println("Status: ", bookmarks.EnumNamesStatus[out.Status()])
+			log.Println("LastTime",   time.Unix(out.LastTimes(), 0).Format("2006-01-02 15:04:05"))
 			log.Println("---------------------------")
 			log.Println(" ")
 		} else {
@@ -86,6 +88,8 @@ func clientLastAdd(client bookmarks.BookmarksServiceClient) (err error) {
 	log.Println("URL: ", string(out.URL()))
 	log.Println("Title: ", string(out.Title()))
 	log.Println("Status: ", bookmarks.EnumNamesStatus[out.Status()])
+	// log.Println("LastTime",out.LastTimes())
+	log.Println("LastTime",   time.Unix(out.LastTimes(), 0).Format("2006-01-02 15:04:05"))
 	return
 }
 
@@ -100,6 +104,7 @@ func clientAdd(client bookmarks.BookmarksServiceClient) (err error) {
 	bookmarks.AddRequestStart(b)
 	bookmarks.AddRequestAddURL(b, url)
 	bookmarks.AddRequestAddTitle(b, title)
+
 	var sta int8
 	if len(os.Args[4]) > 0 {
 		switch os.Args[4] {
@@ -109,7 +114,6 @@ func clientAdd(client bookmarks.BookmarksServiceClient) (err error) {
 			sta = bookmarks.StatusOffline
 		default:
 			sta = bookmarks.StatusUnAccessAble
-
 		}
 
 		bookmarks.AddRequestAddStatus(b, sta)

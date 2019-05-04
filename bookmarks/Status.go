@@ -3,15 +3,15 @@
 package bookmarks
 
 type Status = int8
-
 const (
-	StatusOnline       Status = 1
-	StatusOffline      Status = 2
+	StatusOnline Status = 1
+	StatusOffline Status = 2
 	StatusUnAccessAble Status = 4
 )
 
 var EnumNamesStatus = map[Status]string{
-	StatusOnline:       "Online",
-	StatusOffline:      "Offline",
-	StatusUnAccessAble: "UnAccessAble",
+	StatusOnline:"Online",
+	StatusOffline:"Offline",
+	StatusUnAccessAble:"UnAccessAble",
 }
+

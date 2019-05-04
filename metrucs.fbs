@@ -1,0 +1,18 @@
+namespace metrics;
+enum Type : byte {
+  INT = 0,
+  DOUBLE,
+  STRING,
+}
+table Metric {
+  timestamp:ulong;
+  type:int;
+  key:string;
+  doubleValue:double;
+  intValue:ulong;
+  stringValue:string;
+}
+table Metrics {
+  value_entry:[Metric];
+}
+root_type Metrics;

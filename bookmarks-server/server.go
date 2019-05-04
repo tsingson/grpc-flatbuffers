@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"strconv"
+	"time"
 
 	"google.golang.org/grpc/codes"
 
@@ -21,6 +22,7 @@ type book struct {
 	lastTitle string
 	lastURL   string
 	Status    int8
+	LastTime int64
 }
 
 type server struct {
@@ -39,7 +41,9 @@ func (s *server) Add(context context.Context, in *bookmarks.AddRequest) (*flatbu
 	b.lastTitle = string(in.Title())
 	b.lastURL = string(in.URL())
 	b.Status = in.Status()
+	b.LastTime = time.Now().Unix()
 	s.books[s.id] = b
+
 
 	out := flatbuffers.NewBuilder(0)
 	bookmarks.AddResponseStart(out)
@@ -57,12 +61,14 @@ func (s *server) LastAdded(context context.Context, in *bookmarks.LastAddedReque
 		title := b.CreateString(s.books[s.id].lastTitle)
 		url := b.CreateString(s.books[s.id].lastURL)
 		sta := s.books[s.id].Status
+		lst := s.books[s.id].LastTime
 
 		bookmarks.LastAddedResponseStart(b)
 		bookmarks.LastAddedResponseAddID(b, id)
 		bookmarks.LastAddedResponseAddTitle(b, title)
 		bookmarks.LastAddedResponseAddURL(b, url)
 		bookmarks.LastAddedResponseAddStatus(b, sta)
+		bookmarks.LastAddedResponseAddLastTimes(b, lst)
 		b.Finish(bookmarks.LastAddedResponseEnd(b))
 		return b, nil
 	}
@@ -83,12 +89,14 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 				title := b.CreateString(k.lastTitle)
 				url := b.CreateString(k.lastURL)
 				sta := k.Status
+				lst := s.books[s.id].LastTime
 
 				bookmarks.LastAddedResponseStart(b)
 				bookmarks.LastAddedResponseAddID(b, id)
 				bookmarks.LastAddedResponseAddTitle(b, title)
 				bookmarks.LastAddedResponseAddURL(b, url)
 				bookmarks.LastAddedResponseAddStatus(b, sta)
+				bookmarks.LastAddedResponseAddLastTimes(b, lst )
 				b.Finish(bookmarks.LastAddedResponseEnd(b))
 				_ = serv.Send(b)
 			}
