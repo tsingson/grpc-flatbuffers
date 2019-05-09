@@ -11,46 +11,10 @@ import (
 	"github.com/sanity-io/litter"
 
 	"github.com/tsingson/grpc-flatbuffers/bookmarks"
-
-	"google.golang.org/grpc"
+	"github.com/tsingson/grpc-flatbuffers/model"
 )
 
 type server struct{}
-
-var addr = "0.0.0.0:50051"
-
-func main() {
-
-	if len(os.Args) < 2 {
-		log.Fatalln("Insufficient args provided")
-	}
-
-	conn, err := grpc.Dial(addr, grpc.WithInsecure(), grpc.WithCodec(flatbuffers.FlatbuffersCodec{}))
-	if err != nil {
-		log.Fatalf("Failed to connect: %v", err)
-	}
-	defer conn.Close()
-
-	client := bookmarks.NewBookmarksServiceClient(conn)
-
-	cmd := os.Args[1]
-
-	if cmd == "add" {
-
-		_ = clientAdd(client)
-
-	} else if cmd == "last-added" {
-
-		_ = clientLastAdd(client)
-
-	} else if cmd == "all" {
-
-		_ = clientAll(client)
-	} else if cmd == "getall" {
-		_ = clientGetAll(client)
-	}
-
-}
 
 func clientAll(client bookmarks.BookmarksServiceClient) (err error) {
 	b := flatbuffers.NewBuilder(0)
@@ -101,11 +65,8 @@ func clientGetAll(client bookmarks.BookmarksServiceClient) (err error) {
 				log.Println("Status: ", bookmarks.EnumNamesStatus[obj.Status()])
 				// log.Println("LastTime",out.LastTimes())
 				log.Println("LastTime", time.Unix(obj.LastTimes(), 0).Format("2006-01-02 15:04:05"))
-
 			}
-
 		}
-
 	}
 
 	fmt.Println("")
@@ -140,7 +101,7 @@ func clientAdd(client bookmarks.BookmarksServiceClient) (err error) {
 	titleStr := os.Args[3]
 	statusStr := os.Args[4]
 
-	b := bookmarkBuilder(urlStr, titleStr, statusStr)
+	b := model.AddRequest(urlStr, titleStr, statusStr)
 
 	_, err = client.Add(context.Background(), b)
 	if err != nil {

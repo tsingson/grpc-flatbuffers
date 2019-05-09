@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"net"
 	"strconv"
@@ -110,6 +109,14 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 }
 func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all *flatbuffers.Builder, err error) {
 	log.Println("getAll called...")
+	all = s.buildAllResponse()
+	return
+
+}
+
+func (s *server) buildAllResponse() (all *flatbuffers.Builder) {
+
+	// 初始化 builder
 	all = flatbuffers.NewBuilder(0)
 
 	var offset flatbuffers.UOffsetT
@@ -117,11 +124,10 @@ func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all 
 
 	var count int
 	if s.id > 0 {
-		fmt.Println(s.id)
+
 		for i := int(s.id + 1); i >= 0; i-- {
 			k, ok := s.books[int32(i)]
 			if ok {
-				fmt.Println("--------->", ok)
 				id := all.CreateString(strconv.Itoa(int(k.id)))
 				title := all.CreateString(k.lastTitle)
 				url := all.CreateString(k.lastURL)
@@ -137,7 +143,6 @@ func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all 
 				off := bookmarks.LastAddedResponseEnd(all)
 				data[count] = off
 				count++
-
 			}
 		}
 		bookmarks.AllResponseStartDataVector(all, count)
@@ -151,26 +156,4 @@ func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all 
 	bookmarks.AllResponseAddData(all, offset)
 	all.Finish(bookmarks.AllResponseEnd(all))
 	return
-
-}
-
-func main() {
-
-	lis, err := net.Listen("tcp", addr)
-	if err != nil {
-		log.Fatalf("Failed to listen: %v", err)
-	}
-
-	ser := grpc.NewServer(grpc.CustomCodec(flatbuffers.FlatbuffersCodec{}))
-
-	serv := &server{
-		id:    int32(0),
-		books: make(map[int32]*book, 1),
-	}
-
-	bookmarks.RegisterBookmarksServiceServer(ser, serv)
-	if err := ser.Serve(lis); err != nil {
-		log.Fatalf("Failed to serve: %v", err)
-	}
-
 }
