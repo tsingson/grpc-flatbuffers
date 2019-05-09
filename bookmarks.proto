@@ -7,6 +7,12 @@ service BookmarksService {
     rpc LastAdded(LastAddedRequest) returns (LastAddedResponse) {}
 }
 
+enum Status  {
+byte Online = 1;
+byte Offline = 2;
+byte UnAccessAble = 3;
+  }
+
 message AddRequest {
     string URL = 1;
     string title = 2;

@@ -4,6 +4,7 @@ rpc_service BookmarksService {
   Add(AddRequest):AddResponse(streaming: "none");
   LastAdded(LastAddedRequest):LastAddedResponse (streaming: "none");
   All(LastAddedRequest):LastAddedResponse (streaming: "server");
+  GetAll(AllRequest):AllResponse( streaming:"none");
 }
 
 enum Status:byte  (bit_flags) {
@@ -31,3 +32,10 @@ table LastAddedResponse {
   status:Status ( id:3);
   lastTimes:long (id:4);
 }
+table AllRequest {}
+table AllResponse {
+   Total: int( id:0);
+   Data:[LastAddedResponse] (id:1);
+}
+
+root_type LastAddedResponse;

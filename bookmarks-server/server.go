@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net"
 	"strconv"
@@ -18,16 +19,16 @@ import (
 )
 
 type book struct {
-	id        int
+	id        int32
 	lastTitle string
 	lastURL   string
 	Status    int8
-	LastTime int64
+	LastTime  int64
 }
 
 type server struct {
-	id    int
-	books map[int]*book
+	id    int32
+	books map[int32]*book
 }
 
 var addr = "0.0.0.0:50051"
@@ -44,7 +45,6 @@ func (s *server) Add(context context.Context, in *bookmarks.AddRequest) (*flatbu
 	b.LastTime = time.Now().Unix()
 	s.books[s.id] = b
 
-
 	out := flatbuffers.NewBuilder(0)
 	bookmarks.AddResponseStart(out)
 	out.Finish(bookmarks.AddResponseEnd(out))
@@ -55,7 +55,7 @@ func (s *server) LastAdded(context context.Context, in *bookmarks.LastAddedReque
 	log.Println("LastAdded called...")
 
 	b := flatbuffers.NewBuilder(0)
-	id := b.CreateString(strconv.Itoa(s.id))
+	id := b.CreateString(strconv.Itoa(int(s.id)))
 	_, ok := s.books[s.id]
 	if ok {
 		title := b.CreateString(s.books[s.id].lastTitle)
@@ -81,11 +81,11 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 
 	if s.id > 0 {
 
-		for i := 0; i <= s.id+1; i++ {
-			k, ok := s.books[i]
+		for i := 0; i <= int(s.id+1); i++ {
+			k, ok := s.books[int32(i)]
 			if ok {
 				b := flatbuffers.NewBuilder(0)
-				id := b.CreateString(strconv.Itoa(k.id))
+				id := b.CreateString(strconv.Itoa(int(k.id)))
 				title := b.CreateString(k.lastTitle)
 				url := b.CreateString(k.lastURL)
 				sta := k.Status
@@ -96,7 +96,7 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 				bookmarks.LastAddedResponseAddTitle(b, title)
 				bookmarks.LastAddedResponseAddURL(b, url)
 				bookmarks.LastAddedResponseAddStatus(b, sta)
-				bookmarks.LastAddedResponseAddLastTimes(b, lst )
+				bookmarks.LastAddedResponseAddLastTimes(b, lst)
 				b.Finish(bookmarks.LastAddedResponseEnd(b))
 				_ = serv.Send(b)
 			}
@@ -106,6 +106,51 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 	}
 	err := status.Error(codes.NotFound, "id was ------------> not found")
 	return err
+
+}
+func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all *flatbuffers.Builder, err error) {
+	log.Println("getAll called...")
+	all = flatbuffers.NewBuilder(0)
+
+	var offset flatbuffers.UOffsetT
+	var data = make(map[int]flatbuffers.UOffsetT, 0)
+
+	var count int
+	if s.id > 0 {
+		fmt.Println(s.id)
+		for i := int(s.id + 1); i >= 0; i-- {
+			k, ok := s.books[int32(i)]
+			if ok {
+				fmt.Println("--------->", ok)
+				id := all.CreateString(strconv.Itoa(int(k.id)))
+				title := all.CreateString(k.lastTitle)
+				url := all.CreateString(k.lastURL)
+				sta := k.Status
+				lst := s.books[s.id].LastTime
+
+				bookmarks.LastAddedResponseStart(all)
+				bookmarks.LastAddedResponseAddID(all, id)
+				bookmarks.LastAddedResponseAddTitle(all, title)
+				bookmarks.LastAddedResponseAddURL(all, url)
+				bookmarks.LastAddedResponseAddStatus(all, sta)
+				bookmarks.LastAddedResponseAddLastTimes(all, lst)
+				off := bookmarks.LastAddedResponseEnd(all)
+				data[count] = off
+				count++
+
+			}
+		}
+		bookmarks.AllResponseStartDataVector(all, count)
+		for j := 0; j < count; j++ {
+			all.PrependUOffsetT(data[j])
+		}
+		offset = all.EndVector(count)
+	}
+	bookmarks.AllResponseStart(all)
+	bookmarks.AllResponseAddTotal(all, s.id)
+	bookmarks.AllResponseAddData(all, offset)
+	all.Finish(bookmarks.AllResponseEnd(all))
+	return
 
 }
 
@@ -119,8 +164,8 @@ func main() {
 	ser := grpc.NewServer(grpc.CustomCodec(flatbuffers.FlatbuffersCodec{}))
 
 	serv := &server{
-		id:    0,
-		books: make(map[int]*book, 1),
+		id:    int32(0),
+		books: make(map[int32]*book, 1),
 	}
 
 	bookmarks.RegisterBookmarksServiceServer(ser, serv)
