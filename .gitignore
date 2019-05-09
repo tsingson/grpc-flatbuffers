@@ -1,5 +1,4 @@
 # IDE ignore
-.idea/
 *.ipr
 *.iml
 *.iws
@@ -21,9 +20,9 @@
 Thumbs.db
 
 # build
-/cmd/comet/comet
-/cmd/logic/logic
-/cmd/job/job
-/target
-/configs
-/dist
+./cmd/comet/comet
+./cmd/logic/logic
+./cmd/job/job
+./target
+./configs
+./dist

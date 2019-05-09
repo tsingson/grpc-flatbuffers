@@ -1,11 +1,5 @@
 namespace bookmarks;
 
-rpc_service BookmarksService {
-  Add(AddRequest):AddResponse(streaming: "none");
-  LastAdded(LastAddedRequest):LastAddedResponse (streaming: "none");
-  All(LastAddedRequest):LastAddedResponse (streaming: "server");
-  GetAll(AllRequest):AllResponse( streaming:"none");
-}
 
 enum Status:byte  (bit_flags) {
 Online,
@@ -37,5 +31,15 @@ table AllResponse {
    Total: int( id:0);
    Data:[LastAddedResponse] (id:1);
 }
+
+rpc_service BookmarksService {
+  Add(AddRequest):AddResponse(streaming: "none");
+  LastAdded(LastAddedRequest):LastAddedResponse (streaming: "none");
+  All(LastAddedRequest):LastAddedResponse (streaming: "server");
+  GetAll(AllRequest):AllResponse( streaming:"none");
+}
+
+
+
 
 root_type LastAddedResponse;
