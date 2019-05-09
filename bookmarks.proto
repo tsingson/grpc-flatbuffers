@@ -1,29 +1,47 @@
 syntax = "proto3";
 
-package service;
+package bookmarks;
 
 service BookmarksService {
-    rpc Add(AddRequest) returns (AddResponse) {}
-    rpc LastAdded(LastAddedRequest) returns (LastAddedResponse) {}
+    rpc Add (AddRequest) returns (AddResponse) {
+    }
+    rpc LastAdded (LastAddedRequest) returns (LastAddedResponse) {
+    }
+    rpc All (LastAddedRequest) returns (stream LastAddedResponse) {
+    }
+    rpc GetAll (AllRequest) returns (AllResponse) {
+    }
 }
 
-enum Status  {
-byte Online = 1;
-byte Offline = 2;
-byte UnAccessAble = 3;
-  }
+enum Status {
+    None = 0;
+    Online = 1;
+    Offline = 2;
+    UnAccessAble = 3;
+}
 
 message AddRequest {
     string URL = 1;
-    string title = 2;
+    string Title = 2;
+    Status Status = 3;
 }
 
-message AddResponse {}
+message AddResponse {
+}
 
-message LastAddedRequest {}
+message LastAddedRequest {
+}
 
 message LastAddedResponse {
     string ID = 1;
     string URL = 2;
-    string title = 3;
+    string Title = 3;
+    Status Status = 4;
+    int64 lastTimes = 5;
+}
+message AllRequest {
+}
+message AllResponse {
+    int64 Total = 1;
+    repeated LastAddedResponse Data = 2;
 }
