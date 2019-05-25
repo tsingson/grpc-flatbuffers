@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bookmarks;
+package bookmarkspb;
 
 service BookmarksService {
     rpc Add (AddRequest) returns (AddResponse) {

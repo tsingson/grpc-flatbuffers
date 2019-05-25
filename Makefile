@@ -4,7 +4,7 @@ generate_fbs:
 	flatc --go --grpc bookmarks.fbs
 
 generate_proto:
-	protoc bookmarks.proto --go_out=plugins=grpc:bookmarkspb
+    protoc  -I=/Users/qinshen/go/src -I=/usr/local/include  -I=./ --gofast_out=plugins=grpc:bookmarkspb  ./*.proto
 
 compile: compile_bookmarks_client compile_bookmarks_server
 
