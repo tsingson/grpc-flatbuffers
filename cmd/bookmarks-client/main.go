@@ -22,25 +22,29 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to connect: %v", err)
 	}
-	defer conn.Close()
 
 	client := bookmarks.NewBookmarksServiceClient(conn)
 
 	cmd := os.Args[1]
+	if len(cmd) > 0 {
+		switch cmd {
+		case "add":
+			_ = clientAdd(client)
 
-	if cmd == "add" {
+		case "last-added":
 
-		_ = clientAdd(client)
+			_ = clientLastAdd(client)
 
-	} else if cmd == "last-added" {
+		case "all":
+			_ = clientAll(client)
 
-		_ = clientLastAdd(client)
+		case "getall":
+			_ = clientGetAll(client)
 
-	} else if cmd == "all" {
-
-		_ = clientAll(client)
-	} else if cmd == "getall" {
-		_ = clientGetAll(client)
+		default:
+			_ = clientLastAdd(client)
+		}
 	}
+	_ = conn.Close()
 
 }

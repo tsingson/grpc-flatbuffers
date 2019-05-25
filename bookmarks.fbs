@@ -1,24 +1,25 @@
 namespace bookmarks;
 
-
+// Status bit flags enum
 enum Status:byte  (bit_flags) {
-Online,
-Offline,
-UnAccessAble
-  }
+    Online,
+    Offline,
+    UnAccessAble
+ }
 
-
+// AddRequest request add bookmark
 table AddRequest {
   URL:string (id:0);
   title:string (id:1);
-
-   status:Status (id:2);
+  status:Status (id:2);
 }
 
+// AddResponse response add bookmark
 table AddResponse {}
 
 table LastAddedRequest {}
 
+// LastAddedResponse response for last added bookmark
 table LastAddedResponse {
   ID:string (id:0);
   URL:string (id:1);
@@ -26,20 +27,22 @@ table LastAddedResponse {
   status:Status ( id:3);
   lastTimes:long (id:4);
 }
+
+// AllRequest  request for get all bookmark
 table AllRequest {}
+
+// AllResponse response for get all bookmark
 table AllResponse {
    Total: int( id:0);
    Data:[LastAddedResponse] (id:1);
 }
 
+// BookmarksService
 rpc_service BookmarksService {
   Add(AddRequest):AddResponse(streaming: "none");
   LastAdded(LastAddedRequest):LastAddedResponse (streaming: "none");
   All(LastAddedRequest):LastAddedResponse (streaming: "server");
   GetAll(AllRequest):AllResponse( streaming:"none");
 }
-
-
-
 
 root_type LastAddedResponse;

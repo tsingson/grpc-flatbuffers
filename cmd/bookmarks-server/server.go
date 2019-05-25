@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"log"
-	"net"
 	"strconv"
+	"sync"
 	"time"
 
 	"google.golang.org/grpc/codes"
@@ -13,7 +13,6 @@ import (
 
 	"github.com/tsingson/grpc-flatbuffers/bookmarks"
 
-	"google.golang.org/grpc"
 	"google.golang.org/grpc/status"
 )
 
@@ -26,6 +25,7 @@ type book struct {
 }
 
 type server struct {
+	lock sync.RWMutex
 	id    int32
 	books map[int32]*book
 }
@@ -35,6 +35,7 @@ var addr = "0.0.0.0:50051"
 func (s *server) Add(context context.Context, in *bookmarks.AddRequest) (*flatbuffers.Builder, error) {
 	log.Println("Add called...")
 
+	s.lock.Lock()
 	s.id++
 	b := &book{}
 	b.id = s.id
@@ -43,6 +44,7 @@ func (s *server) Add(context context.Context, in *bookmarks.AddRequest) (*flatbu
 	b.Status = in.Status()
 	b.LastTime = time.Now().Unix()
 	s.books[s.id] = b
+	s.lock.Unlock()
 
 	out := flatbuffers.NewBuilder(0)
 	bookmarks.AddResponseStart(out)
@@ -55,7 +57,9 @@ func (s *server) LastAdded(context context.Context, in *bookmarks.LastAddedReque
 
 	b := flatbuffers.NewBuilder(0)
 	id := b.CreateString(strconv.Itoa(int(s.id)))
+	s.lock.Lock()
 	_, ok := s.books[s.id]
+	s.lock.Unlock()
 	if ok {
 		title := b.CreateString(s.books[s.id].lastTitle)
 		url := b.CreateString(s.books[s.id].lastURL)
@@ -114,46 +118,3 @@ func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all 
 
 }
 
-func (s *server) buildAllResponse() (all *flatbuffers.Builder) {
-
-	// 初始化 builder
-	all = flatbuffers.NewBuilder(0)
-
-	var offset flatbuffers.UOffsetT
-	var data = make(map[int]flatbuffers.UOffsetT, 0)
-
-	var count int
-	if s.id > 0 {
-
-		for i := int(s.id + 1); i >= 0; i-- {
-			k, ok := s.books[int32(i)]
-			if ok {
-				id := all.CreateString(strconv.Itoa(int(k.id)))
-				title := all.CreateString(k.lastTitle)
-				url := all.CreateString(k.lastURL)
-				sta := k.Status
-				lst := s.books[s.id].LastTime
-
-				bookmarks.LastAddedResponseStart(all)
-				bookmarks.LastAddedResponseAddID(all, id)
-				bookmarks.LastAddedResponseAddTitle(all, title)
-				bookmarks.LastAddedResponseAddURL(all, url)
-				bookmarks.LastAddedResponseAddStatus(all, sta)
-				bookmarks.LastAddedResponseAddLastTimes(all, lst)
-				off := bookmarks.LastAddedResponseEnd(all)
-				data[count] = off
-				count++
-			}
-		}
-		bookmarks.AllResponseStartDataVector(all, count)
-		for j := 0; j < count; j++ {
-			all.PrependUOffsetT(data[j])
-		}
-		offset = all.EndVector(count)
-	}
-	bookmarks.AllResponseStart(all)
-	bookmarks.AllResponseAddTotal(all, s.id)
-	bookmarks.AllResponseAddData(all, offset)
-	all.Finish(bookmarks.AllResponseEnd(all))
-	return
-}

@@ -15,9 +15,17 @@ service BookmarksService {
 
 enum Status {
     None = 0;
-    Online = 1;
-    Offline = 2;
-    UnAccessAble = 3;
+    WaitForEmailVerify = 1;
+    Active = 2;
+    Suspend = 4;
+    Deleted = 8;
+}
+
+
+enum Role {
+    Guest = 0;
+    Member = 1;
+    VIP = 2;
 }
 
 message AddRequest {
