@@ -5,13 +5,14 @@ import (
 	"net"
 
 	flatbuffers "github.com/google/flatbuffers/go"
+	"github.com/oklog/run"
 	"google.golang.org/grpc"
 
 	"github.com/tsingson/grpc-flatbuffers/bookmarks"
 )
 
 func main() {
-
+	var addr = "0.0.0.0:50051"
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
@@ -25,7 +26,18 @@ func main() {
 	}
 
 	bookmarks.RegisterBookmarksServiceServer(ser, serv)
-	if err := ser.Serve(lis); err != nil {
+
+	var g run.Group
+
+	g.Add(func() error {
+		return ser.Serve(lis)
+	}, func(e error) {
+		ser.GracefulStop()
+	})
+
+	err = g.Run()
+
+	if err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}
 

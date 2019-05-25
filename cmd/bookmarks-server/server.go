@@ -25,12 +25,10 @@ type book struct {
 }
 
 type server struct {
-	lock sync.RWMutex
+	lock  sync.RWMutex
 	id    int32
 	books map[int32]*book
 }
-
-var addr = "0.0.0.0:50051"
 
 func (s *server) Add(context context.Context, in *bookmarks.AddRequest) (*flatbuffers.Builder, error) {
 	log.Println("Add called...")
@@ -117,4 +115,3 @@ func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all 
 	return
 
 }
-
