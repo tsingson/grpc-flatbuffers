@@ -53,13 +53,13 @@ func (rcv *LastAddedResponse) Title() []byte {
 func (rcv *LastAddedResponse) Status() Status {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
-		return rcv._tab.GetInt8(o + rcv._tab.Pos)
+		return Status(rcv._tab.GetByte(o + rcv._tab.Pos))
 	}
 	return 0
 }
 
 func (rcv *LastAddedResponse) MutateStatus(n Status) bool {
-	return rcv._tab.MutateInt8Slot(10, n)
+	return rcv._tab.MutateByteSlot(10, byte(n))
 }
 
 func (rcv *LastAddedResponse) LastTimes() int64 {
@@ -86,8 +86,8 @@ func LastAddedResponseAddURL(builder *flatbuffers.Builder, URL flatbuffers.UOffs
 func LastAddedResponseAddTitle(builder *flatbuffers.Builder, title flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(title), 0)
 }
-func LastAddedResponseAddStatus(builder *flatbuffers.Builder, status int8) {
-	builder.PrependInt8Slot(3, status, 0)
+func LastAddedResponseAddStatus(builder *flatbuffers.Builder, status Status) {
+	builder.PrependByteSlot(3, byte(status), 0)
 }
 func LastAddedResponseAddLastTimes(builder *flatbuffers.Builder, lastTimes int64) {
 	builder.PrependInt64Slot(4, lastTimes, 0)

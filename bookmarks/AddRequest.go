@@ -45,13 +45,13 @@ func (rcv *AddRequest) Title() []byte {
 func (rcv *AddRequest) Status() Status {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
-		return rcv._tab.GetInt8(o + rcv._tab.Pos)
+		return Status(rcv._tab.GetByte(o + rcv._tab.Pos))
 	}
 	return 0
 }
 
 func (rcv *AddRequest) MutateStatus(n Status) bool {
-	return rcv._tab.MutateInt8Slot(8, n)
+	return rcv._tab.MutateByteSlot(8, byte(n))
 }
 
 func AddRequestStart(builder *flatbuffers.Builder) {
@@ -63,8 +63,8 @@ func AddRequestAddURL(builder *flatbuffers.Builder, URL flatbuffers.UOffsetT) {
 func AddRequestAddTitle(builder *flatbuffers.Builder, title flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(title), 0)
 }
-func AddRequestAddStatus(builder *flatbuffers.Builder, status int8) {
-	builder.PrependInt8Slot(2, status, 0)
+func AddRequestAddStatus(builder *flatbuffers.Builder, status Status) {
+	builder.PrependByteSlot(2, byte(status), 0)
 }
 func AddRequestEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

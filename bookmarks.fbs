@@ -1,7 +1,7 @@
 namespace bookmarks;
 
 // Status bit flags enum
-enum Status:byte  (bit_flags) {
+enum Status:ubyte  (bit_flags) {
     Online,
     Offline,
     UnAccessAble
