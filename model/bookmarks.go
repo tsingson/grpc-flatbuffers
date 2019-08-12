@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/google/flatbuffers/go"
+	flatbuffers "github.com/google/flatbuffers/go"
 
 	"github.com/tsingson/grpc-flatbuffers/bookmarks"
 )

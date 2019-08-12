@@ -3,7 +3,7 @@ package main
 import (
 	"strconv"
 
-	"github.com/google/flatbuffers/go"
+	flatbuffers "github.com/google/flatbuffers/go"
 
 	"github.com/tsingson/grpc-flatbuffers/bookmarks"
 )
@@ -18,7 +18,7 @@ func (s *server) buildAllResponse() (all *flatbuffers.Builder) {
 
 	var count int
 	if s.id > 0 {
-
+		// 倒序处理 books
 		for i := int(s.id + 1); i >= 0; i-- {
 			k, ok := s.books[int32(i)]
 			if ok {

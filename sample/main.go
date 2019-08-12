@@ -22,8 +22,6 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/google/flatbuffers/go"
-
 	sample "github.com/tsingson/grpc-flatbuffers/sample/Sample"
 )
 

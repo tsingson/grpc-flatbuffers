@@ -1,0 +1,11 @@
+namespace frame;
+
+
+table Frame {
+  ver:ubyte( id:0);
+  cmd:ubyte(id:1);
+  len:uint16(id:2);
+  sid:uint32(id:3);
+  inventory:[ubyte](id:4);
+}
+root_type Frame;

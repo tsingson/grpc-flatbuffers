@@ -8,5 +8,5 @@ require (
 	github.com/oklog/run v1.0.0
 	github.com/sanity-io/litter v1.1.0
 	github.com/stretchr/testify v1.3.0 // indirect
-	google.golang.org/grpc v1.21.0
+	google.golang.org/grpc v1.21.1
 )

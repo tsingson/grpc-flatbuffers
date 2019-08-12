@@ -20,7 +20,7 @@ type book struct {
 	id        int32
 	lastTitle string
 	lastURL   string
-	Status    int8
+	Status    bookmarks.Status
 	LastTime  int64
 }
 
