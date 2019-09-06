@@ -111,24 +111,31 @@ func (rcv *Frame) MutateInventory(j int, n byte) bool {
 func FrameStart(builder *flatbuffers.Builder) {
 	builder.StartObject(5)
 }
+
 func FrameAddVer(builder *flatbuffers.Builder, ver byte) {
 	builder.PrependByteSlot(0, ver, 0)
 }
+
 func FrameAddCmd(builder *flatbuffers.Builder, cmd byte) {
 	builder.PrependByteSlot(1, cmd, 0)
 }
+
 func FrameAddLen(builder *flatbuffers.Builder, len uint16) {
 	builder.PrependUint16Slot(2, len, 0)
 }
+
 func FrameAddSid(builder *flatbuffers.Builder, sid uint32) {
 	builder.PrependUint32Slot(3, sid, 0)
 }
+
 func FrameAddInventory(builder *flatbuffers.Builder, inventory flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(4, flatbuffers.UOffsetT(inventory), 0)
 }
+
 func FrameStartInventoryVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(1, numElems, 1)
 }
+
 func FrameEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

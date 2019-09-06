@@ -27,7 +27,6 @@ import (
 
 // Example how to use Flatbuffers to create and read binary buffers.
 func main() {
-
 	builder := mastorBuilder()
 
 	// We now have a FlatBuffer that we could store on disk or send over a network.

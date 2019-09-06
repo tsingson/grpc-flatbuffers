@@ -42,6 +42,7 @@ func clientAll(client bookmarks.BookmarksServiceClient) (err error) {
 	log.Println("Done")
 	return
 }
+
 func clientGetAll(client bookmarks.BookmarksServiceClient) (err error) {
 	b := flatbuffers.NewBuilder(0)
 	bookmarks.AllRequestStart(b)
@@ -55,7 +56,7 @@ func clientGetAll(client bookmarks.BookmarksServiceClient) (err error) {
 		litter.Dump(out.DataLength())
 		for i := 0; i < int(out.Total()); i++ {
 
-			var obj = &bookmarks.LastAddedResponse{}
+			obj := &bookmarks.LastAddedResponse{}
 
 			if out.Data(obj, i) {
 				fmt.Println(i)
@@ -93,7 +94,6 @@ func clientLastAdd(client bookmarks.BookmarksServiceClient) (err error) {
 }
 
 func clientAdd(client bookmarks.BookmarksServiceClient) (err error) {
-
 	if len(os.Args) < 4 {
 		log.Fatalln("Insufficient args provided for add command..")
 	}

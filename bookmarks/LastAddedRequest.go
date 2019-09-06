@@ -29,6 +29,7 @@ func (rcv *LastAddedRequest) Table() flatbuffers.Table {
 func LastAddedRequestStart(builder *flatbuffers.Builder) {
 	builder.StartObject(0)
 }
+
 func LastAddedRequestEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

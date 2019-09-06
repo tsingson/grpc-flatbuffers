@@ -61,15 +61,19 @@ func (rcv *AllResponse) DataLength() int {
 func AllResponseStart(builder *flatbuffers.Builder) {
 	builder.StartObject(2)
 }
+
 func AllResponseAddTotal(builder *flatbuffers.Builder, Total int32) {
 	builder.PrependInt32Slot(0, Total, 0)
 }
+
 func AllResponseAddData(builder *flatbuffers.Builder, Data flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(Data), 0)
 }
+
 func AllResponseStartDataVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
+
 func AllResponseEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

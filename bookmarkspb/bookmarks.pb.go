@@ -6,10 +6,11 @@ package bookmarkspb
 import (
 	context "context"
 	fmt "fmt"
-	proto "github.com/golang/protobuf/proto"
-	grpc "google.golang.org/grpc"
 	io "io"
 	math "math"
+
+	proto "github.com/golang/protobuf/proto"
+	grpc "google.golang.org/grpc"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -100,9 +101,11 @@ func (*AddRequest) ProtoMessage()    {}
 func (*AddRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{0}
 }
+
 func (m *AddRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *AddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_AddRequest.Marshal(b, m, deterministic)
@@ -115,12 +118,15 @@ func (m *AddRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *AddRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_AddRequest.Merge(m, src)
 }
+
 func (m *AddRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *AddRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_AddRequest.DiscardUnknown(m)
 }
@@ -160,9 +166,11 @@ func (*AddResponse) ProtoMessage()    {}
 func (*AddResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{1}
 }
+
 func (m *AddResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *AddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_AddResponse.Marshal(b, m, deterministic)
@@ -175,12 +183,15 @@ func (m *AddResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
+
 func (m *AddResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_AddResponse.Merge(m, src)
 }
+
 func (m *AddResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *AddResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_AddResponse.DiscardUnknown(m)
 }
@@ -199,9 +210,11 @@ func (*LastAddedRequest) ProtoMessage()    {}
 func (*LastAddedRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{2}
 }
+
 func (m *LastAddedRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LastAddedRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LastAddedRequest.Marshal(b, m, deterministic)
@@ -214,12 +227,15 @@ func (m *LastAddedRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, er
 		return b[:n], nil
 	}
 }
+
 func (m *LastAddedRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LastAddedRequest.Merge(m, src)
 }
+
 func (m *LastAddedRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LastAddedRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_LastAddedRequest.DiscardUnknown(m)
 }
@@ -243,9 +259,11 @@ func (*LastAddedResponse) ProtoMessage()    {}
 func (*LastAddedResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{3}
 }
+
 func (m *LastAddedResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *LastAddedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_LastAddedResponse.Marshal(b, m, deterministic)
@@ -258,12 +276,15 @@ func (m *LastAddedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
+
 func (m *LastAddedResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_LastAddedResponse.Merge(m, src)
 }
+
 func (m *LastAddedResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *LastAddedResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_LastAddedResponse.DiscardUnknown(m)
 }
@@ -317,9 +338,11 @@ func (*AllRequest) ProtoMessage()    {}
 func (*AllRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{4}
 }
+
 func (m *AllRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *AllRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_AllRequest.Marshal(b, m, deterministic)
@@ -332,12 +355,15 @@ func (m *AllRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
+
 func (m *AllRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_AllRequest.Merge(m, src)
 }
+
 func (m *AllRequest) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *AllRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_AllRequest.DiscardUnknown(m)
 }
@@ -358,9 +384,11 @@ func (*AllResponse) ProtoMessage()    {}
 func (*AllResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_f34b23b733e42bc7, []int{5}
 }
+
 func (m *AllResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
+
 func (m *AllResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
 		return xxx_messageInfo_AllResponse.Marshal(b, m, deterministic)
@@ -373,12 +401,15 @@ func (m *AllResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
+
 func (m *AllResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_AllResponse.Merge(m, src)
 }
+
 func (m *AllResponse) XXX_Size() int {
 	return m.Size()
 }
+
 func (m *AllResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_AllResponse.DiscardUnknown(m)
 }
@@ -840,6 +871,7 @@ func encodeVarintBookmarks(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return offset + 1
 }
+
 func (m *AddRequest) Size() (n int) {
 	if m == nil {
 		return 0
@@ -960,9 +992,11 @@ func sovBookmarks(x uint64) (n int) {
 	}
 	return n
 }
+
 func sozBookmarks(x uint64) (n int) {
 	return sovBookmarks(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
+
 func (m *AddRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1100,6 +1134,7 @@ func (m *AddRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *AddResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1154,6 +1189,7 @@ func (m *AddResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LastAddedRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1208,6 +1244,7 @@ func (m *LastAddedRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *LastAddedResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1396,6 +1433,7 @@ func (m *LastAddedResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *AllRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1450,6 +1488,7 @@ func (m *AllRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func (m *AllResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
@@ -1557,6 +1596,7 @@ func (m *AllResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+
 func skipBookmarks(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0

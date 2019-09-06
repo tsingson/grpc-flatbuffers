@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	var addr = "0.0.0.0:50051"
+	addr := "0.0.0.0:50051"
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("Failed to listen: %v", err)
@@ -40,5 +40,4 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to serve: %v", err)
 	}
-
 }

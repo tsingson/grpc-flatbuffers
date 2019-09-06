@@ -107,11 +107,10 @@ func (s *server) All(in *bookmarks.LastAddedRequest, serv bookmarks.BookmarksSer
 	}
 	err := status.Error(codes.NotFound, "id was ------------> not found")
 	return err
-
 }
+
 func (s *server) GetAll(context context.Context, in *bookmarks.AllRequest) (all *flatbuffers.Builder, err error) {
 	log.Println("getAll called...")
 	all = s.buildAllResponse()
 	return
-
 }

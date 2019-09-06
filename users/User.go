@@ -49,12 +49,15 @@ func (rcv *User) MutateId(n int64) bool {
 func UserStart(builder *flatbuffers.Builder) {
 	builder.StartObject(2)
 }
+
 func UserAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
 }
+
 func UserAddId(builder *flatbuffers.Builder, id int64) {
 	builder.PrependInt64Slot(1, id, 0)
 }
+
 func UserEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

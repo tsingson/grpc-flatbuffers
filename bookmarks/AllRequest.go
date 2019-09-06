@@ -29,6 +29,7 @@ func (rcv *AllRequest) Table() flatbuffers.Table {
 func AllRequestStart(builder *flatbuffers.Builder) {
 	builder.StartObject(0)
 }
+
 func AllRequestEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

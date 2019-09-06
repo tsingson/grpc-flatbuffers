@@ -57,15 +57,19 @@ func (rcv *AddRequest) MutateStatus(n Status) bool {
 func AddRequestStart(builder *flatbuffers.Builder) {
 	builder.StartObject(3)
 }
+
 func AddRequestAddURL(builder *flatbuffers.Builder, URL flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(URL), 0)
 }
+
 func AddRequestAddTitle(builder *flatbuffers.Builder, title flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(title), 0)
 }
+
 func AddRequestAddStatus(builder *flatbuffers.Builder, status Status) {
 	builder.PrependByteSlot(2, byte(status), 0)
 }
+
 func AddRequestEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

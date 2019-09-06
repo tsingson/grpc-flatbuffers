@@ -77,21 +77,27 @@ func (rcv *LastAddedResponse) MutateLastTimes(n int64) bool {
 func LastAddedResponseStart(builder *flatbuffers.Builder) {
 	builder.StartObject(5)
 }
+
 func LastAddedResponseAddID(builder *flatbuffers.Builder, ID flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(ID), 0)
 }
+
 func LastAddedResponseAddURL(builder *flatbuffers.Builder, URL flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(URL), 0)
 }
+
 func LastAddedResponseAddTitle(builder *flatbuffers.Builder, title flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(title), 0)
 }
+
 func LastAddedResponseAddStatus(builder *flatbuffers.Builder, status Status) {
 	builder.PrependByteSlot(3, byte(status), 0)
 }
+
 func LastAddedResponseAddLastTimes(builder *flatbuffers.Builder, lastTimes int64) {
 	builder.PrependInt64Slot(4, lastTimes, 0)
 }
+
 func LastAddedResponseEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

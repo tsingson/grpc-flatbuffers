@@ -49,12 +49,15 @@ func (rcv *Weapon) MutateDamage(n int16) bool {
 func WeaponStart(builder *flatbuffers.Builder) {
 	builder.StartObject(2)
 }
+
 func WeaponAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
 }
+
 func WeaponAddDamage(builder *flatbuffers.Builder, damage int16) {
 	builder.PrependInt16Slot(1, damage, 0)
 }
+
 func WeaponEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

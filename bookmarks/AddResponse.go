@@ -29,6 +29,7 @@ func (rcv *AddResponse) Table() flatbuffers.Table {
 func AddResponseStart(builder *flatbuffers.Builder) {
 	builder.StartObject(0)
 }
+
 func AddResponseEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

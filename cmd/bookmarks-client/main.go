@@ -13,7 +13,6 @@ import (
 var addr = "0.0.0.0:50051"
 
 func main() {
-
 	if len(os.Args) < 2 {
 		log.Fatalln("Insufficient args provided")
 	}
@@ -46,5 +45,4 @@ func main() {
 		}
 	}
 	_ = conn.Close()
-
 }

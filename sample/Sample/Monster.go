@@ -180,45 +180,59 @@ func (rcv *Monster) PathLength() int {
 func MonsterStart(builder *flatbuffers.Builder) {
 	builder.StartObject(11)
 }
+
 func MonsterAddPos(builder *flatbuffers.Builder, pos flatbuffers.UOffsetT) {
 	builder.PrependStructSlot(0, flatbuffers.UOffsetT(pos), 0)
 }
+
 func MonsterAddMana(builder *flatbuffers.Builder, mana int16) {
 	builder.PrependInt16Slot(1, mana, 150)
 }
+
 func MonsterAddHp(builder *flatbuffers.Builder, hp int16) {
 	builder.PrependInt16Slot(2, hp, 100)
 }
+
 func MonsterAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(name), 0)
 }
+
 func MonsterAddInventory(builder *flatbuffers.Builder, inventory flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(5, flatbuffers.UOffsetT(inventory), 0)
 }
+
 func MonsterStartInventoryVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(1, numElems, 1)
 }
+
 func MonsterAddColor(builder *flatbuffers.Builder, color int8) {
 	builder.PrependInt8Slot(6, color, 4)
 }
+
 func MonsterAddWeapons(builder *flatbuffers.Builder, weapons flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(7, flatbuffers.UOffsetT(weapons), 0)
 }
+
 func MonsterStartWeaponsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
+
 func MonsterAddEquippedType(builder *flatbuffers.Builder, equippedType byte) {
 	builder.PrependByteSlot(8, equippedType, 0)
 }
+
 func MonsterAddEquipped(builder *flatbuffers.Builder, equipped flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(9, flatbuffers.UOffsetT(equipped), 0)
 }
+
 func MonsterAddPath(builder *flatbuffers.Builder, path flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(10, flatbuffers.UOffsetT(path), 0)
 }
+
 func MonsterStartPathVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(12, numElems, 4)
 }
+
 func MonsterEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

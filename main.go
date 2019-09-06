@@ -73,8 +73,6 @@ func main() {
 
 	ff, err := UnMarshell(buf)
 	if err != nil {
-
 	}
 	litter.Dump(ff)
-
 }

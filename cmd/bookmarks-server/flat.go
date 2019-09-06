@@ -9,12 +9,11 @@ import (
 )
 
 func (s *server) buildAllResponse() (all *flatbuffers.Builder) {
-
 	// 初始化 builder
 	all = flatbuffers.NewBuilder(0)
 
 	var offset flatbuffers.UOffsetT
-	var data = make(map[int]flatbuffers.UOffsetT, 0)
+	data := make(map[int]flatbuffers.UOffsetT, 0)
 
 	var count int
 	if s.id > 0 {

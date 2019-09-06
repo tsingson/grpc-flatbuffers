@@ -49,12 +49,15 @@ func (rcv *UserContainer) ListOfUsersLength() int {
 func UserContainerStart(builder *flatbuffers.Builder) {
 	builder.StartObject(1)
 }
+
 func UserContainerAddListOfUsers(builder *flatbuffers.Builder, ListOfUsers flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(ListOfUsers), 0)
 }
+
 func UserContainerStartListOfUsersVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
+
 func UserContainerEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }
